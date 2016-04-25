@@ -9,6 +9,8 @@ use CommerceMLParser\ORM\Collection;
 
 class Offer extends Product
 {
+    /** @var string */
+    protected $productId;
     /** @var int Количество */
     protected $quantity;
     /** @var Collection|Price[] Цены  */
@@ -20,6 +22,8 @@ class Offer extends Product
     {
         parent::__construct($xml);
 
+        $ids = explode('#', (string)$xml->Ид);
+        $this->productId = reset($ids);
         $this->prices = new Collection();
         $this->warehouses = new Collection();
 
@@ -34,6 +38,23 @@ class Offer extends Product
                 $this->warehouses->add(new WarehouseStock($warehouse));
             }
         }
+        if($xml->Остатки) {
+            foreach ($xml->Остатки->Остаток as $stock) {
+                if($stock->Склад){
+                    foreach ($stock->Склад as $warehouse) {
+                        $this->warehouses->add(new WarehouseStock($warehouse));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductId()
+    {
+        return $this->productId;
     }
 
     /**

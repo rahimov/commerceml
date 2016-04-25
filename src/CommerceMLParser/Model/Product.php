@@ -87,11 +87,8 @@ class Product extends Model implements IdModel
         }
 
         if ($xml->Картинка) {
-            $dirName = dirname(Parser::getInstance()->getCurrentFile()->getRealPath());
             foreach ($xml->Картинка as $image) {
-                if (file_exists($path = realpath($dirName . DIRECTORY_SEPARATOR . (string)$image))) {
-                    $this->images->add($path);
-                }
+                $this->images->add((string)$image);
             }
         }
 
@@ -217,7 +214,7 @@ class Product extends Model implements IdModel
     }
 
     /**
-     * @return Partner
+     * @return Collection|Partner[]
      */
     public function getManufacturer()
     {
