@@ -1,5 +1,5 @@
 {
-    "name": "gillbeits/commerceml",
+    "name": "rahimov/commerceml",
     "type": "library",
     "description": "Library for CommerceML 2.0 parser",
     "keywords": ["parser", "commerceml", "xml"],
@@ -8,6 +8,10 @@
         {
             "name": "Ivan Koretskiy",
             "email": "gillbeits@gmail.com"
+        },
+        {
+            "name": "Aleksandr Rahimov",
+            "email": "alexzandr@gmail.com"
         }
     ],
     "require": {
@@ -26,7 +30,8 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev",
-            "dev-alpha-2": "2.0.x-dev"
+            "dev-alpha-2": "2.0.x-dev",
+            "dev-2": "2.0.1"
         }
     }
 }
